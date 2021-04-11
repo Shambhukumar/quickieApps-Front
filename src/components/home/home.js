@@ -9,10 +9,14 @@ import "./home.css";
 
 const Home = () => {
   
-    const [data, setData] = useState();
+    const [data, setData] = useState(null);
     const firstLoad = async () =>{
         const res = await Axios.get(`${URL}getdata`)
-        setData(res.data.data)
+        if(res.data.data.length !== 0){
+          setData(res.data.data)
+        }
+       
+       
        data && console.log(data)
     }
     
@@ -46,8 +50,9 @@ const Home = () => {
 
     return (
         <div className="container-home">
-            
-           <div style={{ minWidth: '85%' }} className="table-home">
+          {console.log(data)}
+      
+        {data && <div style={{ minWidth: '85%' }} className="table-home">
         <MaterialTable
           columns={[
             { title: 'COMPANY NAME', field: 'name' },
@@ -62,10 +67,14 @@ const Home = () => {
           data={data && data}
           title="Stock Details Table"
         />
-      </div>
+      </div>}
       <div className="button-home">
         <Link to="/view" className="button-home-view">View Saved Data</Link>
-      </div>
+      </div> 
+      
+     {!data && <div className="empty">
+        Please Wait few minutes while we update the data.
+      </div>}
         </div>
     )
 

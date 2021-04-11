@@ -30,6 +30,16 @@
 .Current-price{
     padding-right: 20px;
 }
+
+.empty{
+    color: rgb(91, 95, 95);
+    font-size: 25px;
+    height: 90vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
 @media screen and (max-width: 700px) {
     .table-home{
         display: none;

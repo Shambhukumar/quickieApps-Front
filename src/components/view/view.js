@@ -13,8 +13,11 @@ const View = () => {
     const [data, setData] = useState();
     const firstLoad = async () =>{
         const res = await Axios.get(`${URL}getdata`)
-        setData(res.data.data)
-        console.log(data)
+        if(res.data.data.length !== 0){
+          setData(res.data.data)
+        }
+      
+     
     }
     
     useEffect(() => {
@@ -54,7 +57,7 @@ const View = () => {
     return (
         <div className="container-view">
             
-           <div  className="table-view">
+           {data && <div  className="table-view">
         <MaterialTable
           columns={[
             { title: 'COMPANY NAME', field: 'name' },
@@ -69,11 +72,14 @@ const View = () => {
           data={data && data}
           title="Stock Details Table"
         />
-      </div>
+      </div>}
 
-      <div className="button-back">
+      
+      {!data ? <div className="empty">
+        Please Wait few minutes while we update the data.
+      </div>: <div className="button-back">
           <Link to="/home" className="button-back__text">Back</Link>
-      </div>
+      </div>}
         </div>
     )
 
