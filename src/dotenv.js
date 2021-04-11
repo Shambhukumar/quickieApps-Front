@@ -1,1 +1,1 @@
-exports.URL = "http://localhost:4000/" ;
+exports.URL = "https://stockdashboard-quicke.herokuapp.com/" ;
